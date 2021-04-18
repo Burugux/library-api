@@ -83,3 +83,13 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
                         self).get_context_data(**kwargs)
         context['book_charges'] = getCharges(self.request)
         return context
+
+class AuthorListView(generic.ListView):
+    """Generic class-based list view for a list of authors."""
+    model = Author
+    paginate_by = 10
+
+
+class AuthorDetailView(generic.DetailView):
+    """Generic class-based detail view for an author."""
+    model = Author
