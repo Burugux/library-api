@@ -31,12 +31,6 @@ def index(request):
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
 
-    books_loaned = BookInstance.objects.filter(borrower=request.user).filter(
-        status__exact='o').order_by('due_back')
-
-    for b in books_loaned:
-        print(b)
-
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
@@ -58,6 +52,22 @@ class BookListView(generic.ListView):
 class BookDetailView(generic.DetailView):
     model = Book
 
+# scenerio one
+
+
+def getCharges(request):
+    """View function for calculating libraby charges"""
+    books_loaned = BookInstance.objects.filter(borrower=request.user).filter(
+        status__exact='o')
+
+    book_charges = 0
+    days = 0
+    for b in books_loaned:
+        dt = (b.due_back - b.borrowed)
+        days += dt.days
+        book_charges = days * 1
+    return book_charges
+
 
 class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
     """Generic class-based view listing books on loan to current user."""
@@ -67,3 +77,9 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='o').order_by('due_back')
+
+    def get_context_data(self, **kwargs):
+        context = super(LoanedBooksByUserListView,
+                        self).get_context_data(**kwargs)
+        context['book_charges'] = getCharges(self.request)
+        return context

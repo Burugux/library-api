@@ -11,6 +11,7 @@
         <a href="{% url 'book-detail' bookinst.book.pk %}">{{bookinst.book.title}}</a> ({{ bookinst.due_back }})
       </li>
       {% endfor %}
+      <li><strong>Your current library charges:</strong> ${{ book_charges }}</li>
     </ul>
 
     {% else %}
