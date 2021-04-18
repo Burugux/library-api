@@ -31,6 +31,12 @@ def index(request):
     num_visits = request.session.get('num_visits', 1)
     request.session['num_visits'] = num_visits + 1
 
+    books_loaned = BookInstance.objects.filter(borrower=request.user).filter(
+        status__exact='o').order_by('due_back')
+
+    for b in books_loaned:
+        print(b)
+
     context = {
         'num_books': num_books,
         'num_instances': num_instances,
