@@ -12,8 +12,13 @@ In addition to managing books this application can also help manage/maintain aut
 ## Quick start
 The application can be accesed at https://limitless-spire-67788.herokuapp.com/ . For the purposes of testing the following credentials can be used to login and play around with the application
 
+### Normal user credentials
 * username: tester
 * password: testerpassword
+
+### Staff credentials (Admin)
+* username: admin
+* password: admin19940 
 
 ## Project models
 ![UML](https://raw.githubusercontent.com/Burugux/library-api/main/library_model_uml.png)
