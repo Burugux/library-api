@@ -34,4 +34,3 @@ uritemplate==3.0.1
 urllib3==1.26.4
 whitenoise==5.2.0
 wrapt==1.12.1
-psycopg2-binary==2.8.6
