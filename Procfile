@@ -1,0 +1,1 @@
+web: gunicorn rental_api.wsgi --log-file -
