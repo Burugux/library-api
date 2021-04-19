@@ -11,60 +11,68 @@ In addition to managing books this application can also help manage/maintain aut
 
 The application can be accesed at https://limitless-spire-67788.herokuapp.com/
 
+## Project models
+![UML](https://raw.githubusercontent.com/Burugux/library-api/main/library_model_uml.png)
+
 ## Requirements
 * Python 3.6
-* postman
 * pip
 * virtualenv
+* Postgres
 
 # Installation
 ### 1)Clone the repo from GitHub:
-$ git clone https://github.com/Ahmedsebit/lori_assignment.git
+```console
+$ git clone https://github.com/Burugux/library-api.git
+```
 
 ### 2) Create a virtual environment and install the necessary packages with:
+```console
 $ virtualenv -p python3 env
+```
+
+or
+```console
+$ python3 -m venv env
+```
 
 ### 3) Activate virtual environment:
+```console
 $ source env/bin/activate
+```
 
 ### 4) cd to the root of the api:
-$ cd lori_assignment
+```console
+$ cd rental_api
+```
 
 ### 5) Install requirements:
+```console
 $ pip install -r requirements.txt
+```
 
 ### 6) Make migrations:
-$ python manage.py makemigrations
-
+```console
+$ python manage.py makemigration
 $ python manage.py migrate
-
-# Runserver
-$ python manage.py runserver
-
-# Authentication
-### Getting the token
-The /api-token-auth/ is the authentication endpoint, which will be http://127.0.0.1:8000/api-token-auth/ from local server. The token is retrieved by submitting the username and password
-
-### Using the token
-The token is used in all the endpoints by adding the JWT+ token in the authorization header. Alternatively, the user can log in using the login links from the web application and the token will be generated, stored and refreshed by the application
-
-# Accesing the application
-The application can be accesed by using postman or for a better experience, using the web app.
+```
 
 # Users
-Users include staff(superusers) and Normal Users
-# Staff (superuser)
-#### Are created using the command
-$ python manage.py createsuperusers
-#### Functions the supers users can do
-| Funcion                                    | Request| command                 |
-| ------------------------------------------ | -------| ------------------------|
-| `/api-token-auth/`                         |`POST`  | Login and retrieve token|
-| `/api/rest-auth/registration/`             |`POST`  | Registration            |
-| `/api/<version>/book_rentals/`             |`GET`   | GET ALL RENTALS         |
-| `/api/<version>/book_rentals/create`       |`POST`  | Create Book Rental      |
-| `/api/<version>/book_rentals/users/balance/<user_id>`|`GET`   | GET balance   |
-| `/api/<version>/books/`                    |`GET`   | GET All Books           |
+#### Create a superuser who can access the dashboard
+```console
+$ python manage.py createsuperuser
+```
+
+# Admin dashboard
+Normal Users,books,authors,genres,languages and book instances can be added via the admin dashboard
+
+# start the development server
+Create a superuser who can access the admin dashboard https://limitless-spire-67788.herokuapp.com/admin/
+```console
+$ python manage.py runserver
+```
 
 # Running the tests
- $ coverage run --source='.' manage.py test books
+```console
+$ coverage run --source='.' manage.py test books
+```
