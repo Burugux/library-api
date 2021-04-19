@@ -9,7 +9,11 @@ This is a django application for used for managing a catalogue of books. Books:
 
 In addition to managing books this application can also help manage/maintain author details,genres and book titles in different languages
 
-The application can be accesed at https://limitless-spire-67788.herokuapp.com/
+## Quick start
+The application can be accesed at https://limitless-spire-67788.herokuapp.com/ . For the purposes of testing the following credentials can be used to login and play around with the application
+
+* username: tester
+* password: testerpassword
 
 ## Project models
 ![UML](https://raw.githubusercontent.com/Burugux/library-api/main/library_model_uml.png)
